@@ -54,8 +54,8 @@ public final class Controller {
      * @throws IOException if the string cannot be written.
      */
     public void insertString(final String insert) throws IOException {
-        final PrintStream ps = new PrintStream(this.getPath(), StandardCharsets.UTF_8);
-        ps.print(insert);
-        ps.close();
+        try (final PrintStream ps = new PrintStream(this.getPath(), StandardCharsets.UTF_8)) {
+            ps.println(insert);
+        }
     }
 }
